@@ -45,7 +45,7 @@ namespace ScreenSaveOnLock {
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Icon = global::ScreenSaveOnLock.Properties.Resources.icon;
             this.notifyIcon1.Text = System.Windows.Forms.Application.ProductName;
             this.notifyIcon1.Visible = true;
             // 
