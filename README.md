@@ -5,7 +5,17 @@ I wanted my system setup such that it would not activate the screen saver (and l
 
 This program is the result of those needs and acts as anti-idle and screen saver trigger.
 
-The program monitors workstation lock state and screen saver active state. The state transition times are also tracked. If the screen saver is currently running, the program just idles. If the screen saver isn't running, the shift key is tapped every 50s. (This is comfortably under the minimum time you can set the screen saver timer to. Using the shift key prevents interference if you are actually using the computer.) If the console is locked and has been locked for certain amount of time (currently 50s), the screen saver is activated.
+The program monitors workstation lock state, screen saver active state, and state transition times.
+
+- If the screen saver is currently running:
+  - Sleep
+- If screen saver is not running:
+  - If screen is locked and idle for 50s:
+    - De-idle and force-start screen saver
+  - If screen is not locked and idle for 50s:
+    - De-idle
+
+De-idle is done by simulating a shift key tap. 50s is comfortably under the minimum screen saver timeout.
 
 There are number of necessary functions that are not made available through the .NET framework. These are instead accessed through User32.dll and C#'s pinvoke capability. Windows doesn't provide the current lock state instead passing events when the computer becomes locked or unlocked. Conversely, Windows doesn't provide screen saver start and stop events, instead giving you current screen saver state. This program also tracks logon and logoff events and will only do anything if a user is currently logged in.
 
